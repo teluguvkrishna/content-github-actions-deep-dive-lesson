@@ -72,5 +72,5 @@ jobs:
         env: 
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
-          tag: run-${{ github.run_number }}-${{ github.sha }}
+          tag_name: run-${{ github.run_number }}-${{ github.sha }}
           files: ./${{ github.sha }}.zip
