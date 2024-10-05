@@ -56,7 +56,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }} # This token is provided by actions, you do not need to create your own.
         with:
-          tag_name: ${{ github.run_number }}
+          tag_name: ${{ github.sha }}
           release_name: Release ${{ github.run_number}}
           body: New release for ${{ github.sha }}. Release notes can be found in docs.
           draft: false
@@ -68,7 +68,7 @@ jobs:
           name: zipped-bundle
       # Upload Release Asset
       - name: Upload release asset
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v1
         env: 
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
