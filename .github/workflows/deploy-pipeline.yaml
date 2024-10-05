@@ -43,4 +43,20 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: zipped-bundle
-          path: ${{ github.sha }}.zip
+          path: ${{ github.sha }}.zip   
+
+  publish:
+    run-on: ubuntu-latest
+    steps:
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }} # This token is provided by actions, you do not need to create your own.
+        with:
+          tag_name: ${{ github.run_number }}
+          release_name: Release ${{ github.run_number}}
+          body: New release for ${{ github.sha }}. Release notes can be found in docs.
+          draft: false
+          prerelease: false
+    
