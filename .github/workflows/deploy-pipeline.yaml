@@ -68,11 +68,8 @@ jobs:
           name: zipped-bundle
       # Upload Release Asset
       - name: Upload release asset
-        uses: actions/upload-artifact@v3
+        uses: actions/softprops/action-gh-release@v2
         env: 
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./${{ github.sha }}.zip
-          asset_name: source_code_with_libraries.zip
-          asset_content_type: application/zip
+          files: ./${{ github.sha }}.zip
